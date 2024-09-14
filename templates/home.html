@@ -5,14 +5,12 @@
     {% if user.is_authenticated %}
     <h2 class="text-center">{{ user.username }}'s Grocery Items</h2>
     
-    <!-- Button to trigger modal -->
     <div class="text-right mb-3">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#groceryModal">
             Create Grocery Item
         </button>
     </div>
 
-    <!-- Grocery Items Table -->
     <div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
@@ -37,7 +35,6 @@
                 </td>
             </tr>
 
-            <!-- Bootstrap Edit Modal (inside the loop) -->
             <div class="modal fade" id="editModal{{ item.id }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -76,7 +73,6 @@
                 </div>
             </div>
 
-            <!-- Bootstrap Delete Modal (inside the loop) -->
             <div class="modal fade" id="deleteModal{{ item.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -107,7 +103,6 @@
     <h2 class="text-center">Welcome to the Grocery App</h2>
     <p class="text-center">Please log in with Google to access your grocery items.</p>
 
-    <!-- Google Sign-In Button -->
     <div class="text-center">
         <a href="{% url 'account_login' %}" class="btn btn-danger">
             Login with Google
@@ -116,7 +111,6 @@
     {% endif %}
 </div>
 
-<!-- Bootstrap Modal for Grocery Item creation -->
 <div class="modal fade" id="groceryModal" tabindex="-1" aria-labelledby="groceryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
