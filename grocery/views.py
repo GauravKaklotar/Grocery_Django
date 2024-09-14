@@ -4,10 +4,15 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-@login_required
+# @login_required
 def home(request):
-    grocery_items = GroceryItem.objects.filter(user=request.user)  # Get only logged-in user's items
-    categories = Category.objects.all()  # Categories for the dropdown in the modal
+    if request.user.is_authenticated:
+        grocery_items = GroceryItem.objects.filter(user=request.user)
+    else:
+        grocery_items = []
+    
+    categories = Category.objects.all()
+    
     context = {
         'grocery_items': grocery_items,
         'categories': categories,

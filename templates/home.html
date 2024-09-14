@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container mt-5">
+    {% if user.is_authenticated %}
     <h2 class="text-center">My Grocery Items</h2>
     
     <!-- Button to trigger modal -->
@@ -12,6 +13,7 @@
     </div>
 
     <!-- Grocery Items Table -->
+    <div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -99,6 +101,19 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+    {% else %}
+    <h2 class="text-center">Welcome to the Grocery App</h2>
+    <p class="text-center">Please log in with Google to access your grocery items.</p>
+
+    <!-- Google Sign-In Button -->
+    <div class="text-center">
+        <a href="{% url 'account_login' %}" class="btn btn-danger">
+            Login with Google
+        </a>
+    </div>
+    {% endif %}
 </div>
 
 <!-- Bootstrap Modal for Grocery Item creation -->
