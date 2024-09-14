@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
     {% if user.is_authenticated %}
-    <h2 class="text-center">My Grocery Items</h2>
+    <h2 class="text-center">{{ user.username }}'s Grocery Items</h2>
     
     <!-- Button to trigger modal -->
     <div class="text-right mb-3">
