@@ -3,6 +3,20 @@ from .models import GroceryItem, Category
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from .serializers import GroceryItemSerializer, CategorySerializer
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view
+
+class GroceryItemViewSet(viewsets.ModelViewSet):
+    queryset = GroceryItem.objects.all()
+    serializer_class = GroceryItemSerializer
+    permission_classes = [AllowAny] 
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [AllowAny] 
 
 # @login_required
 def home(request):
@@ -21,6 +35,7 @@ def home(request):
 
 
 @login_required
+@api_view(['POST'])
 def create_grocery_item(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -38,6 +53,7 @@ def create_grocery_item(request):
         return HttpResponseRedirect(reverse('home'))
 
 @login_required
+@api_view(['PUT'])
 def edit_grocery_item(request, item_id):
     grocery_item = GroceryItem.objects.get(id=item_id, user=request.user)
 
@@ -52,6 +68,7 @@ def edit_grocery_item(request, item_id):
 
 
 @login_required
+@api_view(['DELETE'])
 def delete_grocery_item(request, item_id):
     grocery_item = GroceryItem.objects.get(id=item_id, user=request.user)
 
@@ -60,6 +77,7 @@ def delete_grocery_item(request, item_id):
         return redirect('home')
 
 @login_required
+@api_view(['GET'])
 def grocery_item_detail(request, item_id):
     grocery_item = GroceryItem.objects.get(id=item_id, user=request.user)
     return render(request, 'grocery_item_detail.html', {'grocery_item': grocery_item})
