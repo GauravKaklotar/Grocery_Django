@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views
+from .views import GroceryItemListView, GroceryItemCreateView, GroceryItemUpdateView, GroceryItemDeleteView, GroceryItemDetailView
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('create/', views.create_grocery_item, name='create_grocery_item'),
-    path('edit/<int:item_id>/', views.edit_grocery_item, name='edit_grocery_item'),
-    path('delete/<int:item_id>/', views.delete_grocery_item, name='delete_grocery_item'),
-    path('view/<int:item_id>/', views.grocery_item_detail, name='grocery_item_detail'),
+    path('', GroceryItemListView.as_view(), name='home'),
+    path('create/', GroceryItemCreateView.as_view(), name='grocery_item_create'),
+    path('update/<int:pk>/', GroceryItemUpdateView.as_view(), name='grocery_item_update'),
+    path('delete/<int:pk>/', GroceryItemDeleteView.as_view(), name='grocery_item_delete'),
+    path('detail/<int:pk>/', GroceryItemDetailView.as_view(), name='grocery_item_detail'),
 ]

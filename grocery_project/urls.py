@@ -20,12 +20,12 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework.routers import DefaultRouter
-from grocery.views import GroceryItemViewSet, CategoryViewSet 
+# from grocery.views import GroceryItemViewSet, CategoryViewSet 
 
 
-router = DefaultRouter()
-router.register(r'groceryitems', GroceryItemViewSet)
-router.register(r'categories', CategoryViewSet)
+# router = DefaultRouter()
+# router.register(r'groceryitems', GroceryItemViewSet)
+# router.register(r'categories', CategoryViewSet)
 
 schema_view = get_schema_view(
     openapi.Info(
